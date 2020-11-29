@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rj1814.Dao.mybatisdao">
+<cache/>
+<!--<cache-->
+<!--        eviction="FIFO"-->
+<!--        flushInterval="60000"-->
+<!--        size="512"-->
+<!--        readOnly="true"/>-->
+    <select id="idFindAll" resultType="com.rj1814.pojo.mybatisPojo">
+        select * from mybatis.mybatis where id=#{id}
+    </select>
+
+    <update id="updata">
+        update mybatis set name=#{name} where id=#{id}
+    </update>
+</mapper>

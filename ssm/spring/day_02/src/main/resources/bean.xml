@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--name标签也能当作别名   a b 都算别名都能用-->
+    <bean id="namea" class="com.Lsm.pojo" name="a b">
+        <constructor-arg name="name" value="小强"/>
+    </bean>
+<!--    别名-->
+    <alias name="namea" alias="asd"/>
+
+    
+<!--    引用别的bean -->
+    <import resource="ApplicationContext.xml"/>
+</beans>

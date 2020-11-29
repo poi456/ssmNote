@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    外部引用 ${driver} jdbc 数据-->
+    <properties resource="db.properties"></properties>
+<!--    加日志-->
+    <settings>
+        
+<!--        log4j日志-->
+<!--        <setting name="logImpl" value="LOG4J"/>-->
+<!--        标准的日志工厂实现-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+<!--        <setting name="mapUnderscoreToCamelCase" value="true"/>-->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+<!--    起别名-->
+    <typeAliases>
+<!--        包较少时使用  优点可以自己取名字-->
+<!--        <typeAlias type="com.rj1814.pojo.entity" alias="entity"></typeAlias>-->
+<!--        包较多时使用可以不可以自己取名字 名字默认为小写的类名 大写的也行-->
+        <package  name="com.rj1814.pojo"/>
+    </typeAliases>
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="jdbc"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+<!--        <mapper resource="account.xml"/>-->
+<!--        <package name="com.rj1814.Dao"/>-->
+<!--        <package name="com.rj1814.dao"/>-->
+<!--        <mapper resource="com/rj1814/Dao/mybatisdao.xml"/>-->
+        <mapper class="com.rj1814.Dao.mybatisdao"></mapper>
+    </mappers>
+</configuration>

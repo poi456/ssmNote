@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:con="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="account" class="com.lsm.service.accountImpl"/>
+    <bean id="user" class="com.lsm.service.user"/>
+<!--开启注解支持-->
+    <aop:aspectj-autoproxy/>
+<!--    切入点：-->
+<!--execution标准写法 public void com.lsm.service.accountImpl.add(参数)-->
+<!--        <aop:config>-->
+<!--&lt;!&ndash;            插入的位置 user(bean)&ndash;&gt;-->
+<!--            <aop:aspect id="asd" ref="user">-->
+<!--&lt;!&ndash;               要插入的代码的具体位置  也叫切入点&ndash;&gt;-->
+<!--                <aop:pointcut id="a" expression="execution(* *.*.*.*.*())"/>-->
+<!--&lt;!&ndash;     before执行前执行    after执行后执行        插入哪一个代码 method方法名  pointcut-ref用用位置 pointcut具体位置&ndash;&gt;-->
+<!--                <aop:before method="aa" pointcut-ref="a"/>-->
+<!--                <aop:after method="aa" pointcut="execution(* *.*.*.*.*())"/>-->
+<!--            </aop:aspect>-->
+<!--        </aop:config>-->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;    配置切面expression：表达式execution需要执行位置(* * * )&ndash;&gt;-->
+<!--        <aop:pointcut id="asd" expression="execution(public void com.lsm.service.accountImpl.add())"/>-->
+<!--&lt;!&ndash;        执行环绕&ndash;&gt;-->
+<!--        <aop:advisor advice-ref="user" pointcut-ref="asd"/>-->
+<!--    </aop:config>-->
+</beans>

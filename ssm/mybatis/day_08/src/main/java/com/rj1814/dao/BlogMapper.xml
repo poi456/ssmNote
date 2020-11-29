@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rj1814.dao.BlogMapper">
+
+
+    <insert id="addBlog" parameterType="IBlog">
+          insert into mybatis.blog (id, title, author, create_time, views)values
+          (#{id}, #{title}, #{author}, #{create_time}, #{views});
+    </insert>
+
+    <select id="ifaddBlog" parameterType="map" resultType="com.rj1814.pojo.IBlog">
+        select * from blog where 1=1
+            <if test="title!=null">
+                and title=#{title}
+            </if>
+
+            <if test="views!=null">
+                and views=#{views}
+            </if>
+    </select>
+    <select id="whereaddBlog" parameterType="map" resultType="com.rj1814.pojo.IBlog">
+        select * from blog
+        <where>
+        <if test="title!=null">
+             title=#{title}
+        </if>
+
+        <if test="views!=null">
+             and views=#{views}
+        </if>
+        </where>
+    </select>
+    <select id="trsaddBlog" parameterType="map" resultType="com.rj1814.pojo.IBlog">
+          select * from blog
+          <where>
+            <choose>
+                <when test="title!=null">
+                    title=#{title}
+                </when>
+                <when test="views!=null">
+                   and views=#{views}
+                </when>
+                <otherwise>
+                    author=#{author}
+                </otherwise>
+            </choose>
+          </where>
+    </select>
+    <select id="ForEaddBlog" parameterType="map" resultType="com.rj1814.pojo.IBlog">
+        select * from mybatis.blog
+        <where>
+            <foreach collection="list" item="id" open="and (" close=")" separator="or">
+                id=#{id}
+            </foreach>
+        </where>
+    </select>
+
+    <sql id="sql-title-views-author">--   片段引入提到高代码重复率
+    <if test="title!=null">
+        title=#{title},
+    </if>
+    <if test="views!=null">
+        views=#{views},
+    </if>
+    <if test="author!=null">
+        author=#{author}
+    </if>
+</sql>
+    <update id="updata" parameterType="map">
+            update blog
+            <set>
+                <include refid="sql-title-views-author"></include>
+            </set>
+            where id=#{id}
+    </update>
+
+</mapper>

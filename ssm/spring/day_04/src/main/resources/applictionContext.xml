@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+<!--    开启注解支持需要 beans中配置context  和<context:annotation-config/>     @Autowired直接在类的属性上使用就行 set方法可不写-->
+    <context:annotation-config/>
+    <bean id="cat" class="com.lsm.pojo.cat"/>
+    <bean id="cat111" class="com.lsm.pojo.cat"/>
+    <bean id="dog" class="com.lsm.pojo.dog"/>
+    <!--autowire="byName" byName会在容器上下文中查找，和自己对象set方法后面的值对应的beanid-->
+    <bean id="user" class="com.lsm.pojo.user" >
+        <property name="name" value="小强"/>
+     </bean>
+</beans>

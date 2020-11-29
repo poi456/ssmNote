@@ -1,0 +1,95 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<script>
+		let b = "${error}" != "";
+		console.log(b);
+		if (b){
+			alert('${error}');
+		}
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>HTML5响应式第三方登录页面模板</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" /> 
+
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/util.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
+	<script>
+		<%--function aa(){--%>
+		<%--	$.post({--%>
+		<%--		url : "<%=request.getContextPath()%>/account/main1",--%>
+		<%--		data:{"username":$("#uname").val(),"pass":$("#upassword").val()},--%>
+		<%--		success:function(data) {--%>
+		<%--			alert(data);--%>
+		<%--		}});--%>
+		<%--}--%>
+	</script>
+</head>
+
+<body>
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('${pageContext.request.contextPath}/images/bg-01.jpg');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form validate-form" action="<%=request.getContextPath()%>/account/main1" method="post">
+					<span class="login100-form-title p-b-49">登录</span>
+
+					<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
+						<span class="label-input100">用户名</span>
+						<input class="input100" id="uname" type="text" name="username" placeholder="请输入用户名" autocomplete="off">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="请输入密码">
+						<span class="label-input100">密码</span>
+						<input class="input100" id="upassword" type="password" name="pass" placeholder="请输入密码">
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+
+					<div class="text-right p-t-8 p-b-31">
+						<a href="javascript:">忘记密码？</a>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+<%--							<button class="login100-form-btn"><a href="index1.jsp">登 录</a></button>--%>
+							<button class="login100-form-btn" type="submit">登录</button>
+						</div>
+					</div>
+
+					<div class="txt1 text-center p-t-54 p-b-20">
+						<span>第三方登录</span>
+					</div>
+
+					<div class="flex-c-m">
+						<a href="#" class="login100-social-item bg1">
+							<i class="fa fa-wechat"></i>
+						</a>
+
+						<a href="#" class="login100-social-item bg2">
+							<i class="fa fa-qq"></i>
+						</a>
+
+						<a href="#" class="login100-social-item bg3">
+							<i class="fa fa-weibo"></i>
+						</a>
+					</div>
+
+					<div class="flex-col-c p-t-25">
+						<a href="${pageContext.request.contextPath}/admin-add1.jsp" class="txt2">立即注册</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+</body>
+
+</html>

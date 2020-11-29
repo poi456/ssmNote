@@ -1,0 +1,60 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd">
+<!--    配置注解扫描-->
+<!--    <context:component-scan base-package="com.lsm.dao">-->
+<!--        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+<!--    </context:component-scan>-->
+<!--    <context:property-placeholder location="classpath:db.properties"/>-->
+    <context:property-placeholder location="classpath:db.properties"/>
+<!--    配置数据库连接池-->
+<!--    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+<!--        <property name="driverClass" value="com.mysql.jdbc.Driver"/>-->
+<!--        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8"/>-->
+<!--        <property name="user" value="root"/>-->
+<!--        <property name="password" value="123456"/>-->
+<!--    </bean>-->
+<!--通过spring-jdbc配置连接池-->
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+<!--    配置工厂-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+<!--        绑定mabatis配置文件-->
+        <property name="configLocation" value="classpath:mybatis.xml"/>
+<!--        <property name="mapperLocations" value="classpath:com/lsm/dao/*.xml"/>-->
+    </bean>
+    <!--    自动添加userDao 到 IOC 容器中-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<!--        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
+        <property name="basePackage" value="com.lsm.dao"/>
+    </bean>
+<bean id="transa" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+</bean>
+<!--    配置事务-->
+<tx:advice id="txAdvoice" transaction-manager="transa">
+    <tx:attributes>
+        <tx:method name="*"/>
+    </tx:attributes>
+</tx:advice>
+<!--    配置事务切入-->
+    <aop:config>
+        <aop:pointcut id="asd" expression="execution(* com.lsm.dao.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvoice" pointcut-ref="asd"/>
+    </aop:config>
+</beans>

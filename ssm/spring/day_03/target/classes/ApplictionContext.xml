@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="student" class="com.lsm.pojo.student" p:name="123">
+        <property name="account" ref="account"></property>
+        <property name="books">
+            <array>
+                <value>龟儿子</value>
+                <value>傻逼</value>
+            </array>
+        </property>
+
+        <property name="list">
+            <list>
+                <value>a</value>
+                <value>b</value>
+                <value>c</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="a" value="a"/>
+            </map>
+        </property>
+       <property name="set">
+           <set>
+               <value>a</value>
+               <value>b</value>
+           </set>
+       </property>
+        <property name="wife">
+            <null/>
+        </property>
+
+        <property name="info">
+            <props>
+                <prop key="学号">asd</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="account" class="com.lsm.pojo.Account">
+<!--        <property name="name" value="龟儿子"/>-->
+    </bean>
+</beans>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    外部引用 ${driver} jdbc 数据-->
+    <properties resource="db.properties"></properties>
+
+<!--    起别名-->
+    <typeAliases>
+<!--        包较少时使用  优点可以自己取名字-->
+<!--        <typeAlias type="com.rj1814.pojo.entity" alias="entity"></typeAlias> -->
+<!--        包较多时使用可以不可以自己取名字 名字默认为小写的类名 大写的也行-->
+        <package name="com.rj1814.pojo"/>
+    </typeAliases>
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="jdbc"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="account.xml"/>
+
+    </mappers>
+</configuration>

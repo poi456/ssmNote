@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lsm.dao.BookMapper">
+
+    <insert id="insert">
+        insert into books (bookId, bookName, Price, remarks)
+            values (bookId=#{bookId},bookName=#{bookName},Price=#{Price},remarks=#{remarks});
+    </insert>
+    <select id="findAll" resultType="com.lsm.pojo.Books">
+        select * from books
+    </select>
+</mapper>

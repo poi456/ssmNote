@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rj1814.dao.accountDao">
+<!--通过映射搞定数据库中的字段跟实体类字段不一致的问题-->
+    <resultMap id="dd" type="entity">
+        <result column="age" property="sex"></result>
+<!--&lt;!&ndash;        column数据库中的字段 property实体类的属性&ndash;&gt;-->
+<!--        <result column="id" property="id"></result>-->
+<!--        <result column="name" property="name"></result>-->
+<!--        <result column="age" property="age"></result>-->
+    </resultMap>
+      <select id="finAll" resultMap="dd">
+        <!--  <select id="finAll" resultType="entity">-->
+             select * from ssm.mybatis
+         </select>
+         <select id="FuzzyQuery" resultType="com.rj1814.pojo.entity" parameterType="map">
+             select * from ssm.mybatis where name  like #{value}
+         </select>
+
+    <insert id="inser" parameterType="map">
+             insert into ssm.mybatis(name,age) values(#{name},#{age})
+         </insert>
+<!--分页查询-->
+    <select id="limin" resultType="com.rj1814.pojo.entity" parameterType="map">
+        select * from ssm.mybatis limit #{begin},#{end}
+    </select>
+     </mapper>

@@ -1,0 +1,5 @@
+**/.idea
+**/*.iml
+**/out
+**/target
+**/.attach_pid**
